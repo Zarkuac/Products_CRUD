@@ -11,8 +11,8 @@
   echo '<pre>';
   exit;*/
 
-  echo $_SERVER['REQUEST_METHOD']. '<br>';
-
+  //echo $_SERVER['REQUEST_METHOD']. '<br>';
+  
   $errors = [];
 
   $title = '';
@@ -24,6 +24,20 @@
     $price = $_POST['price'];
     $description = $_POST['description'];
 
+
+
+    $image = $_FILES['image'] ?? null;
+    $imagePath = '';
+
+    if (!is_dir('images')) {
+      mkdir('images');
+    }
+
+    if ($image) {
+      $imagePath = 'images/'.randomString(8).'/'.$image['name'];
+      mkdir(dirname($imagePath));
+      move_uploaded_file($image['tmp_name'], $imagePath);
+    }
 
 
     if(!$title) {
@@ -39,7 +53,7 @@
       $statement = $pdo->prepare("INSERT INTO products (title, image, description, price, create_date)
                  VALUES (:title, :image, :description, :price, :date)");
   $statement->bindValue(':title', $title);
-  $statement->bindValue(':image', '');
+  $statement->bindValue(':image', $imagePath);
   $statement->bindValue(':description', $description);
   $statement->bindValue(':price', $price);
   $statement->bindValue(':date', date('Y-m-d H:i:s'));
@@ -48,7 +62,18 @@
 
   header('Location: index.php');
   }  
+  }
+
+  function randomString($n) {
+    $characters= '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    $str = '';
+    for ($i = 0 ; $i < $n; $i++){
+      $index = rand(0, strlen($characters) - 1);
+      $str .= $characters[$index];
     }
+    return $str;
+  }
             
 ?>
 
@@ -73,7 +98,7 @@
     <?php endif; ?>
 
 
-    <form method='post'>
+    <form method='post' enctype="multipart/form-data">
   <div class="form-group">
     <label>Product Image</label> <br>
       <input type="file" class="form-control" name="image">
