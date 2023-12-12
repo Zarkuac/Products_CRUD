@@ -3,7 +3,8 @@
   $pdo = new PDO('mysql:host=localhost;port=3306;dbname=products_crud', 'root', '');
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $statement =  $pdo->prepare('SELECT * FROM products');
+  $statement =  $pdo->prepare('SELECT * FROM products
+                               order by create_date desc');
   $statement->execute();
   $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -53,8 +54,11 @@
         <td><?php echo $product['create_date']?></td>
         <td> 
         <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
-        <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
-        </td>
+        <form method="post" action="delete.php" style="display: inline-block">
+        <input type="hidden" name="id" value="<?php echo $product['id'] ?>"/>
+        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+        </form>  
+      </td>
       </tr>
   <?php }  ?>
 
