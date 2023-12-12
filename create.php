@@ -1,4 +1,7 @@
 <?php 
+
+  require_once "functions.php";
+
   $pdo = new PDO('mysql:host=localhost;port=3306;dbname=products_crud', 'root', '');
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -33,7 +36,7 @@
       mkdir('images');
     }
 
-    if ($image) {
+    if ($image && $image['tmp_name']) {
       $imagePath = 'images/'.randomString(8).'/'.$image['name'];
       mkdir(dirname($imagePath));
       move_uploaded_file($image['tmp_name'], $imagePath);
@@ -63,18 +66,7 @@
   header('Location: index.php');
   }  
   }
-
-  function randomString($n) {
-    $characters= '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-    $str = '';
-    for ($i = 0 ; $i < $n; $i++){
-      $index = rand(0, strlen($characters) - 1);
-      $str .= $characters[$index];
-    }
-    return $str;
-  }
-            
+           
 ?>
 
 <!doctype html>
