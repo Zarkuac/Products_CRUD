@@ -1,6 +1,6 @@
 <?php
 
-require_once "functions.php";
+require_once "../functions.php";
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -8,8 +8,7 @@ if (!$id) {
     exit;
 }
 
-$pdo = new PDO('mysql:host=localhost;port=3306;dbname=products_crud', 'root', '');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require_once '../database.php';
 
 $statement = $pdo->prepare('SELECT * FROM products WHERE id = :id');
 $statement->bindValue(':id', $id);
@@ -70,18 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Products Crud</title>
-    <link href="app.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  </head>
-  <body>
+<?php require_once '../views/partials/header.php'; ?>
     <p> 
     <a href="index.php" class="btn btn-secondary"> Back to products </a>
     </p>
