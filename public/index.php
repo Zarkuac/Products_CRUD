@@ -2,14 +2,9 @@
 
   require_once '../database.php';
 
-  $statement =  $pdo->prepare('SELECT * FROM products
-                               order by create_date desc');
-  $statement->execute();
-  $products = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-  /*echo '<pre>';
-  var_dump($products);
-  echo '<pre>';*/
+$statement = $pdo->prepare('SELECT * FROM products ORDER BY create_date DESC');
+$statement->execute();
+$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
   <?php require_once '../views/partials/header.php'; ?>
@@ -17,7 +12,18 @@
     <p> 
     <a href="create.php" type="button" class="btn btn-sm btn-success">Add Product</a>
     </p>
-    
+
+
+    <form action="" method="get">
+    <div class="input-group mb-3">
+      <input type="text" name="search" class="form-control" placeholder="Search">
+      <div class="input-group-append">
+        <button class="btn btn-success" type="submit">Search</button>
+      </div>
+    </div>
+</form>
+
+
     <table class="table">
   <thead>
     <tr>
