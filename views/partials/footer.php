@@ -3,7 +3,7 @@
   <div class="container p-4 pb-0">
     <!-- Section: Form -->
     <section class="">
-      <form action="">
+      <form action="proccess_form.php" method="POST">
         <!--Grid row-->
         <div class="row d-flex justify-content-center">
           <!--Grid column-->
@@ -18,7 +18,7 @@
           <div class="col-md-5 col-12">
             <!-- Email input -->
             <div data-mdb-input-init class="form-outline mb-4">
-              <input type="email" id="form5Example26" class="form-control" />
+              <input type="email" id="email" name="email" class="form-control" />
             </div>
           </div>
           <!--Grid column-->
