@@ -37,6 +37,7 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
       <th scope="col">Title</th>
       <th scope="col">Price</th>
       <th scope="col">Create Date</th>
+      <!-- <th scope="col">Description</th> -->
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -51,6 +52,7 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
         </td>
         <td><?php echo $product['title']?></td>
         <td><?php echo $product['price']?></td>
+        <!-- <td><?php echo $product['description']?></td> -->
         <td><?php echo $product['create_date']?></td>
         <td> 
         <a href="update.php?id=<?php echo $product['id'] ?>"
@@ -67,4 +69,5 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 </table>
 
   </body>
+  <?php require_once '../views/partials/footer.php'; ?>
 </html>
