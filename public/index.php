@@ -2,6 +2,19 @@
 
   require_once '../database.php';
 
+  session_start();
+
+  // Check if user is logged in
+  if (!isset($_SESSION['username'])) {
+      // Redirect to login page
+      header("Location: login.php");
+      exit;
+  }
+  
+  // If logged in, display welcome message
+  echo "Welcome, " . $_SESSION['username'] . "! You are now logged in.";
+
+
   $keyword = $_GET['search'] ?? null;
   if ($keyword) {
     $statement = $pdo->prepare('SELECT * FROM products WHERE title like :keyword ORDER BY create_date DESC');
@@ -14,9 +27,12 @@
 $statement->execute();
 $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
+    <p> 
+    <a href="login.php" type="button" class="btn btn-sm btn-success">LOG OUT</a>
+    </p>
 
-  <?php require_once '../views/partials/header.php'; ?>
-      
+  <?php require_once '../views/partials/header.php'; ?> 
+  
     <p> 
     <a href="create.php" type="button" class="btn btn-sm btn-success">Add Product</a>
     </p>

@@ -11,6 +11,10 @@ require_once '../database.php';
   // echo '<script>alert("EMAIL SENT")</script>';
   // header('Location: index.php');
   echo '<script> alert("EMAIL SENT. Admin Will Contact You !");
-window.location.href="index.php";
-</script>';
+        window.location.href="index.php";</script>';
+
+
+
+
+        //SAVING EMAILS FROM FOOTER
 ?>
