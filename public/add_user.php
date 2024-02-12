@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <title>Add User</title>
 <style>
     body {
@@ -42,6 +43,16 @@
         cursor: pointer;
         width: 100%;
     }
+    button{
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
     input[type="submit"]:hover {
         background-color: #45a049;
     }
@@ -49,6 +60,9 @@
 </head>
 <body>
 <div class="container">
+<p> 
+    <a href="index.php" class="btn btn-secondary"> Back to Admin Panel </a>
+    </p>
     <h2>Add User</h2>
     <form action="add_user_process.php" method="post">
         <label for="username">Username:</label>
