@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="login.css" rel="stylesheet">
-
-<title>Login Form</title>
+<title>Login To APanel</title>
 </head>
 <body>
 <div class="login-container">

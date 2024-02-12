@@ -29,6 +29,7 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <p> 
     <a href="login.php" type="button" class="btn btn-sm btn-success">LOG OUT</a>
+    <a href="add_user.php" type="button" class="btn btn-sm btn-success">ADD USER</a>
     </p>
 
   <?php require_once '../views/partials/header.php'; ?> 
