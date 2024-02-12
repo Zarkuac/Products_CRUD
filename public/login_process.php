@@ -37,7 +37,8 @@ if ($result->num_rows == 1) {
     // Redirect to index.php
     header("Location: index.php");
 } else {
-    echo "Login failed. Invalid username or password.";
+    //echo "Login failed. Invalid username or password."
+    header("Location: failed.php");
 }
 
 // Close connection
